@@ -1,0 +1,307 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="hero-wrap js-fullheight" style="background-image: url({% static 'base/' %}images/bg_1.jpg);"
+         data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
+                 data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate">
+                    <h2 class="subheading">Добро пожаловать!</h2>
+                    <h1 class="mb-4">Найдите номер мечты</h1>
+                    <p><a href="#" class="btn btn-primary">Узнать больше</a> <a href="#" class="btn btn-white">Свяжитесь с нами</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section ftco-book ftco-no-pt ftco-no-pb">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-4">
+                    <form action="{% url 'booking:check_available_rooms_by_number' %}" class="appointment-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="mb-3">Проверьте доступность номера</h3>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select name="adults" id="" class="form-control">
+                                                <option value="">Взрослых</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select name="children" id="" class="form-control">
+                                                <option value="0">Детей</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Проверить" class="btn btn-primary py-3 px-4">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-1.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Удачное расположение</h3>
+                            <p>Отель находится в центре города, что позволит Вам не волноваться о времени в пути на важные встречи</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-2.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Эксклюзивное обслуживание</h3>
+                            <p>Мы предоставляем множество дополнительных услуг нашим клиентов</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-3.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Комфортные номера</h3>
+                            <p>Все номера соответствуют высокому уровню комфорта и уюта для проживания и провождения свободного времени</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light ftco-no-pt ftco-no-pb">
+        <div class="container-fluid px-md-0">
+            <div class="row no-gutters">
+                {% for room_type in room_types %}
+                    <div class="col-lg-6">
+                        <div class="room-wrap d-md-flex">
+                            <a href="{% url 'rooms:check_available_rooms_by_type' room_type.pk %}" class="img"
+                               style="background-image: url(/{{ room_type.photo }});"></a>
+                            <div class="half left-arrow d-flex align-items-center">
+                                <div class="text p-4 p-xl-5 text-center">
+                                    <p class="star mb-0"><span class="fa fa-star"></span><span
+                                            class="fa fa-star"></span><span class="fa fa-star"></span><span
+                                            class="fa fa-star"></span><span class="fa fa-star"></span></p>
+                                    <p class="mb-0"><span class="price mr-1">{{ room_type.price }}₽</span> <span
+                                            class="per">за ночь</span></p>
+                                    <h3 class="mb-3"><a href="rooms.html">{{ room_type.room_type.capitalize }}</a></h3>
+                                    <ul class="list-accomodation">
+                                        <li><span>Вместимость:</span> {{ room_type.maximum_capacity }} человек(-а)</li>
+                                        <li><span>Площадь:</span> {{ room_type.size }} м2</li>
+                                        <li><span>Особенность:</span> {{ room_type.view }}</li>
+                                        <li><span>Кровати:</span> {{ room_type.bed_number }}</li>
+                                    </ul>
+                                    <p class="pt-1"><a
+                                            href="{% url 'rooms:check_available_rooms_by_type' room_type.pk %}"
+                                            class="btn-custom px-3 py-2">Посмотреть доступные {{ room_type.room_type.capitalize }} номера
+                                        <span class="icon-long-arrow-right"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section testimony-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center pb-5 mb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h2>Довольные клиенты &amp; Отзывы</h2>
+                </div>
+            </div>
+            <div class="row ftco-animate">
+                <div class="col-md-12">
+                    <div class="carousel-testimony owl-carousel">
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
+                                <div class="user-img"
+                                     style="background-image: url({% static 'base/' %}images/person_1.jpg)">
+                                </div>
+                                <div class="text pl-4">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="fa fa-quote-left"></i>
+									</span>
+                                    <p>Приехали отдохнуть семьёй и заселились в данный отель. Остались рады качеством обслуживания и ремонтом номеров</p>
+                                    <p class="name">Василий Пупкин</p>
+                                    <span class="position">Отец</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
+                                <div class="user-img"
+                                     style="background-image: url({% static 'base/' %}images/person_2.jpg)">
+                                </div>
+                                <div class="text pl-4">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="fa fa-quote-left"></i>
+									</span>
+                                    <p>Остался крайне доволен отелем, всё на высоте! Расположение в центре города оказалось очень удобным и экономным решением для меня. При следующей бизнес-встрече обязательно заселюсь именно сюда</p>
+                                    <p class="name">Владимир Новаковский</p>
+                                    <span class="position">Бизнесмен</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
+                                <div class="user-img"
+                                     style="background-image: url({% static 'base/' %}images/person_3.jpg)">
+                                </div>
+                                <div class="text pl-4">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="fa fa-quote-left"></i>
+									</span>
+                                    <p>Приехал издалека на повышение квалификации. От проживания в отеле остались только положительные эмоции!</p>
+                                    <p class="name">Иван Тимбухтин</p>
+                                    <span class="position">Учитель</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
+                                <div class="user-img"
+                                     style="background-image: url({% static 'base/' %}images/person_4.jpg)">
+                                </div>
+                                <div class="text pl-4">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="fa fa-quote-left"></i>
+									</span>
+                                    <p>I came to Russia for a business meeting, I chose this hotel only because of its location, but I was pleasantly impressed by the level of service and the quality of the rooms</p>
+                                    <p class="name">Rodel Golez</p>
+                                    <span class="position">Бизнесмен</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-6 wrap-about">
+                    <div class="img img-2 mb-4" style="background-image: url({% static 'base/' %}images/about.jpg);">
+                    </div>
+                    <h2>Один из самых рекомендуемых отелей города</h2>
+                    <p>Нас рекомендуют</p>
+                </div>
+                <div class="col-md-6 wrap-about ftco-animate">
+                    <div class="heading-section">
+                        <div class="pl-md-5">
+                            <h2 class="mb-2">Перечень услуг</h2>
+                        </div>
+                    </div>
+                    <div class="pl-md-5">
+                        <p>Мы предлагаем большой перечень услуг нашим клиентам, чтобы у них остались только положительные эмоции и желание вернуться к нам</p>
+                        <div class="row">
+                            <div class="services-2 col-lg-6 d-flex w-100">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-diet"></span>
+                                </div>
+                                <div class="media-body pl-3">
+                                    <h3 class="heading">Чай и кофе</h3>
+                                    <p>Вы можете заказать чай или кофе прямо в номер в любой удобный для Вас момент!
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="services-2 col-lg-6 d-flex w-100">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-diet-1"></span>
+                                </div>
+                                <div class="media-body pl-3">
+                                    <h3 class="heading">Завтрак</h3>
+                                    <p>Наш отель предоставляет всем клиентам завтрак с богатым выбором блюд
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="services-2 col-lg-6 d-flex w-100">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-first"></span>
+                                </div>
+                                <div class="media-body pl-3">
+                                    <h3 class="heading">Кондиционер</h3>
+                                    <p>В каждом номере установлена система кондиционирования
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="services-2 col-lg-6 d-flex w-100">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-first"></span>
+                                </div>
+                                <div class="media-body pl-3">
+                                    <h3 class="heading">Бесплатный Wifi</h3>
+                                    <p>Бесплатный, быстрый и стабильный беспроводной интернет предоставляется всем нашим клиентам
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-intro" style="background-image: url({% static 'base/' %}images/bg_1.jpg);"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 text-center">
+                    <h2>Убедитесь в отзывах наших клиентов</h2>
+                    <p class="mb-4">Бронирование онлайн с нами - это безопасно и быстро! Реализуйте свою мечту всего в пару кликов или свяжитесь с нами при возникновении вопросов.</p>
+                    <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Забронировать номер</a> <a href="#"
+                                                                                                  class="btn btn-white px-4 py-3">Свяжитесь с нами</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

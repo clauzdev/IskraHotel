@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'partials/breadcrumb.html' with title='Вход' bgTitle='Вход'%}
+
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+            </div>
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-lg-8 col-md-7 d-flex align-items-stretch">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <h3 class="mb-4">Вход</h3>
+                                <div id="form-message-warning" class="mb-4"></div>
+                                <div id="form-message-success" class="mb-4">
+                                    
+                                </div>
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm"
+                                      action="{% url 'customer:login' %}?next={{ next_page }}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="label" for="username">Логин</label>
+                                                <input type="text" class="form-control" name="username" id="username"
+                                                       placeholder="Ваш логин">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="label" for="password">Пароль</label>
+                                                <input type="password" class="form-control" name="password"
+                                                       id="password" placeholder="Ваш пароль">
+                                            </div>
+                                        </div>
+										<div class="col-md-12" id="photoBlock" style="display: none;">
+                                            <div class="form-group">
+                                                <label class="label" for="photo">Фотография</label>
+                                                <div class="Input">
+
+                                                            <div id="camera" class="camera">
+                                                                <img class="faceGif" src="{% static 'base/' %}images/face_id.gif" alt="recognition">
+                                                                <video id="video">Video stream not available.</video>
+                                                                <button id="startbutton" type="button">Удержание</button>
+                                                                <button id="restartbutton" type="button" style="display: none;">Возобновить</button>
+                                                                <input id="webimg" value="" name="src" type="text" style="display: none;">
+                                                                <canvas id="canvas">
+                                                                </canvas>
+                                                            </div>
+                                                            <br>
+                                                            <div>
+<!--                                                                <input type="image" class="form-control" name="photo" id="photo" placeholder="Photo">-->
+                                                                <img id="photo" alt="your image" style="display: none;">
+                                                            </div>
+                                                            <br>
+<!--                                                            <button type="submit" class="button" id="submit">Submit</button>-->
+
+                                                    </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button type="button" id="loginButton" value="Войти" class="btn btn-primary">Войти</button>
+                                                <div class="submitting">
+                                                    Еще нет аккаунта? Зарегистрируйтесь <a
+                                                        href="{% url 'customer:register' %}">здесь</a>!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-asm.js" integrity="sha512-SdnN4uSqsI+ZHErhQ4aco5MZ5MMQkVlYKq6i7ZpKiAWxApLoCKlwKM5VjIFY8z7k2/0B/xgIxTLNXhzNmv+Szw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'base/' %}js/login.js"></script>
+
+{% endblock content %}

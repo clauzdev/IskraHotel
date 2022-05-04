@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'partials/breadcrumb.html' with title='Услуги' bgTitle='Услуги'%}
+
+
+    <section class="ftco-section ftco-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-1.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Удачное расположение</h3>
+                            <p>Отель находится в центре города, что позволит Вам не волноваться о времени в пути на важные встречи</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-2.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Эксклюзивное обслуживание</h3>
+                            <p>Мы предоставляем множество дополнительных услуг нашим клиентов</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                    <div class="d-block services-wrap text-center">
+                        <div class="img"
+                             style="background-image: url({% static 'base/' %}images/services-3.jpg);"></div>
+                        <div class="media-body py-4 px-3">
+                            <h3 class="heading">Комфортные номера</h3>
+                            <p>Все номера соответствуют высокому уровню комфорта и уюта для проживания и провождения свободного времени</p>
+                            <!--<p><a href="#" class="btn btn-primary">Read more</a></p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light ftco-no-pt">
+        <div class="container">
+            <div class="row no-gutters justify-content-center pb-5 mb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h2>Дополнительно</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="services-2 col-md-3 d-flex w-100 ftco-animate">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-diet"></span>
+                    </div>
+                    <div class="media-body pl-3">
+                        <h3 class="heading">Чай и кофе</h3>
+                                    <p>Вы можете заказать чай или кофе прямо в номер в любой удобный для Вас момент!
+                                    </p>
+                    </div>
+                </div>
+                <div class="services-2 col-md-3 d-flex w-100 ftco-animate">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-workout"></span>
+                    </div>
+                    <div class="media-body pl-3">
+                        <h3 class="heading">Завтрак</h3>
+                                    <p>Наш отель предоставляет всем клиентам завтрак с богатым выбором блюд
+                                    </p>
+                    </div>
+                </div>
+                <div class="services-2 col-md-3 d-flex w-100 ftco-animate">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-diet-1"></span>
+                    </div>
+                    <div class="media-body pl-3">
+                        <h3 class="heading">Кондиционер</h3>
+                                    <p>В каждом номере установлена система кондиционирования
+                                    </p>
+                    </div>
+                </div>
+                <div class="services-2 col-md-3 d-flex w-100 ftco-animate">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-first"></span>
+                    </div>
+                    <div class="media-body pl-3">
+                        <h3 class="heading">Бесплатный Wifi</h3>
+                                    <p>Бесплатный, быстрый и стабильный беспроводной интернет предоставляется всем нашим клиентам
+                                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

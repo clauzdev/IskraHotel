@@ -1,0 +1,169 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'partials/breadcrumb.html' with title='Регистрация' bgTitle='Регистрация'%}
+
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+
+
+                <div class="col-md-12">
+                    <div class="wrapper">
+                        <div class="row no-gutters">
+                            <div class="col-lg-8 col-md-7 d-flex align-items-stretch">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Регистрация</h3>
+
+                                    <div id="form-message-warning" class="mb-4">
+                                        <ul>
+                                            {% for field in user_form %}
+                                                {% if field.errors %}
+                                                    <li>
+                                                        {{ field.label }}
+                                                        <ul class="errorlist">
+                                                            {% for error in field.errors %}
+                                                                <li>{{ error }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+
+                                        <ul>
+                                            {% for field in customer_form %}
+                                                {% if field.errors %}
+                                                    <li>
+                                                        {{ field.label }}
+                                                        <ul class="errorlist">
+                                                            {% for error in field.errors %}
+                                                                <li>{{ error }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div id="form-message-success" class="mb-4">
+                                    </div>
+                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm"
+                                          action="{% url 'customer:register' %}" enctype='multipart/form-data'>
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="first_name">Имя</label>
+                                                    <input type="text" class="form-control" name="first_name"
+                                                           id="first_name" placeholder="Ваше имя">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="last_name">Фамилия</label>
+                                                    <input type="text" class="form-control" name="last_name"
+                                                           id="last_name" placeholder="Ваша фамилия">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="nid_no">Серия паспорта</label>
+                                                    <input type="text" class="form-control" name="nid_no"
+                                                           id="nid_no" placeholder="4 цифры">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="passport_no">Номер паспорта</label>
+                                                    <input type="text" class="form-control" name="passport_no"
+                                                           id="passport_no" placeholder="6 цифр">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="photo_exists">Включить сканирование лица при входе?</label>
+                                                    <input type="checkbox" class="form-control" name="photo_exists"
+                                                           id="photo_exists">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" id="photoBlock" style="display: none;">
+                                                <div class="form-group">
+                                                    <label class="label" for="photo">Фотография</label>
+                                                    <div class="Input">
+                                                            <div id="camera" class="camera">
+                                                                <img class="faceGif" src="{% static 'base/' %}images/face_id.gif" alt="recognition">
+                                                                <video id="video">Video stream not available.</video>
+                                                                <button id="startbutton" type="button">Удержать</button>
+                                                                <button id="restartbutton" type="button" style="display: none;">Возобновить</button>
+                                                                <input id="webimg" value="" name="src" type="text" style="display: none;">
+                                                                <canvas id="canvas">
+                                                                </canvas>
+                                                            </div>
+                                                            <br>
+                                                            <div>
+<!--                                                                <input type="image" class="form-control" name="photo" id="photo" placeholder="Photo">-->
+                                                                <img id="photo" alt="your image"  style="display: none;">
+                                                            </div>
+                                                            <br>
+<!--                                                            <button type="submit" class="button" id="submit">Submit</button>-->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="phone_no">Номер телефона</label>
+                                                    <input type="text" class="form-control" name="phone_no"
+                                                           id="phone_no"
+                                                           placeholder="+79998887766">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="email">Email адрес</label>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                           placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="username">Логин</label>
+                                                    <input type="text" class="form-control" name="username"
+                                                           id="username" placeholder="логин">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="password">Пароль</label>
+                                                    <input type="password" class="form-control" name="password"
+                                                           id="password" placeholder="пароль">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <button id="loginButton" type="button" value="Завершить регистрацию" class="btn btn-primary">Завершить регистрацию</button>
+                                                    <div class="submitting">
+                                                        Уже есть аккаунт? Войдите <a href="#">здесь</a>!
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script src="{% static 'base/' %}js/camera.js"></script>
+{% endblock content %}

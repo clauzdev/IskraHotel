@@ -69,9 +69,15 @@
 	  startbutton.style.display = "none";
 	  myForm.submit();
     }, false);
+	defaultloginbutton();
 	clearphoto();	
   }
-  
+  function defaultloginbutton() {
+	login_button.addEventListener('click', function(ev){
+		console.log('idi naxyi')
+	  myForm.submit();
+    }, false);
+  }
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
@@ -123,6 +129,10 @@
 	  startbutton.style.display = "block";
     }, false);
 	
+	login_button.removeEventListener('click', function(ev){
+	  myForm.submit();
+    }, false);
+	
 	login_button.addEventListener('click', function(ev){
       takepicture();
       ev.preventDefault();
@@ -171,6 +181,7 @@
 
   // Set up our event listener to run the startup process
   // once loading is complete.
+  document.addEventListener("DOMContentLoaded", defaultloginbutton());
   photo_exists.addEventListener('change', function() {
 	  if (this.checked) {
 		photoBlock.style.display="block";

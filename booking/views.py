@@ -31,6 +31,8 @@ def book_room(request, pk):
 
             return render(request, 'cart.html', {'booking': booking})
         else:
+            print("eblan", request.POST.get('check_in_date'))
+            print("hyila", request.POST.get('check_out_date'))
             print(booking_form.errors)
 
     else:

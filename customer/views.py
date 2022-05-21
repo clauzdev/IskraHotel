@@ -120,14 +120,23 @@ def user_login(request):
                             image.name = name
                             with open(uploadedphotopath + image.name, 'wb') as f:
                                 f.write(imgdata)
-                            result = DeepFace.verify(customerphotopath, uploadedphotopath + name)
-                            print(result)
-                            if result['distance'] < 0.25:
-                                return HttpResponseRedirect(next_page)
-                            else:
+                            try:
+                                result = DeepFace.verify(customerphotopath, uploadedphotopath + name)
+                                print(result)
+                                if result['distance'] < 0.25:
+                                    return HttpResponseRedirect(next_page)
+                                else:
+                                    logout(request)
+                                    return HttpResponse(
+                                        'Лицо не распознано! Попробуйте сделать фото еще раз, при этом убедитесь, что на '
+                                        'фотографии Вас отчётливо видно, и фотография не смазана.')
+                            except ValueError:
                                 logout(request)
                                 return HttpResponse(
-                                    'Лицо не распознано! Попробуйте сделать фото еще раз, при этом убедитесь, что на фотографии Вас отчётливо видно, и фотография не смазана.')
+                                    'Лицо не распознано! Попробуйте сделать фото еще раз, при этом убедитесь, что на '
+                                    'фотографии Вас отчётливо видно, и фотография не смазана.')
+
+
                         else:
                             return HttpResponseRedirect(next_page)
                     else:

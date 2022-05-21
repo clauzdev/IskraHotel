@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-
+import IskraHotel.settings as settings
 from customer.models import Customer
 from rooms.models import Room
 
@@ -19,7 +19,7 @@ class Booking(models.Model):
         return f'{self.customer.user.username}_{self.pk}'
 
     def booking_price(self):
-        return self.room.room_type.price * (self.check_out_date - self.check_in_date).days
+        return int(self.room.room_type.price * (self.check_out_date - self.check_in_date).days)
 
     def total_days(self):
         return (self.check_out_date - self.check_in_date).days

@@ -59,6 +59,9 @@
 	  startbutton.style.display = "none";
 	  myForm.submit();
     }, false);
+	login_button.addEventListener('click', function(ev){
+	  myForm.submit();
+    }, false);
 	clearphoto();	
   }
   
@@ -110,6 +113,10 @@
 	  startbutton.style.display = "block";
     }, false);
 	
+	login_button.removeEventListener('click', function(ev){
+	  myForm.submit();
+    }, false);
+	
 	login_button.addEventListener('click', function(ev){
       takepicture();
       ev.preventDefault();
@@ -155,10 +162,10 @@
   });
   //const fetched = await fetch("../../root/db.sqlite3");
   const buf = await fetech("../../root/db.sqlite3");//new ArrayBuffer(fetched);
-  console.log("BUFFER EBANNI" + buf);
+  console.log("BUFFER" + buf);
   var db = new SQL.Database(new Uint8Array(buf));
   var contents = null;
-  var contentik = null
+  var contentik = null;
   username.addEventListener('input', function() {
 	  contents = db.exec("select photo from customer_customer where user_id = (select id from authentication_user where username = '"+ username.value + "')");
     try {

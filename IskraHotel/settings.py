@@ -25,7 +25,7 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51K1v7XItZ6lt8yGydY4Tqg05Niox0BohPrQRSE3fHuKYO
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.cl13471.tmweb.ru', '.cl13471.tmweb.ru.']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -55,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'IskraHotel.urls'
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 TEMPLATES = [
     {

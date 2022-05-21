@@ -49,7 +49,7 @@
                                                             <td>x</td>
                                                             <td>{{ booking.total_days }}</td>
 
-                                                            <td class="text-right">${{ booking.booking_price }}</td>
+                                                            <td class="text-right">{{ booking.booking_price }}₽</td>
                                                             <td class="text-right">
                                                                 {#                                                                <button class="btn btn-sm btn-danger"><i#}
                                                                 {#                                                                        class="fa fa-trash"></i></button>#}
@@ -63,7 +63,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td>Подытог</td>
-                                                            <td class="text-right">${{ booking.booking_price }}</td>
+                                                            <td class="text-right">{{ booking.booking_price }}₽</td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
@@ -74,7 +74,7 @@
                                                             <td></td>
                                                             <td><strong>Итог</strong></td>
                                                             <td class="text-right">
-                                                                <strong>${{ booking.booking_price }}</strong></td>
+                                                                <strong>{{ booking.booking_price }}₽</strong></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
